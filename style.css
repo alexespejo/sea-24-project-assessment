@@ -15,6 +15,13 @@ body {
  background: rgb(229, 229, 229);
  color: rgb(69, 69, 69);
 }
+h1,
+h2,
+h3,
+h4 {
+ padding: 0;
+ margin: 0;
+}
 #home-page {
  display: flex;
  flex-direction: column;
@@ -47,10 +54,11 @@ body {
  display: flex;
  width: 40rem;
 }
-#dialog h1 {
+#dialog .rank {
  font-size: 18px;
+ margin-bottom: 1rem;
 }
-#dialog h3 {
+#dialog .artist {
  font-size: 16px;
 }
 #dialog img {
@@ -84,8 +92,12 @@ body {
  width: 50%;
 }
 .album-info .modal-content-2 {
+ font-size: 15px;
  padding-left: 1rem;
  width: 50%;
+}
+.modal-content-2 .critic-rating {
+ font-size: 2rem;
 }
 #card-container {
  display: flex;
@@ -108,7 +120,18 @@ body {
  padding: 0.5rem;
  border-radius: 0.3rem;
 }
-
+.card img {
+ width: 12rem;
+ height: 12rem;
+ height: auto;
+ border-radius: 0.3rem;
+ box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1),
+  0px 10px 15px -3px rgba(0, 0, 0, 0.1), 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+.card img:hover {
+ cursor: pointer;
+ scale: 105%;
+}
 .card .heading {
  text-align: center;
  flex-direction: column;
@@ -126,7 +149,7 @@ body {
  border-radius: 100%;
 }
 .artist {
- font-size: 12px;
+ font-size: 15px;
  display: inline;
  font: bold;
 }
@@ -140,20 +163,6 @@ body {
  justify-content: center;
 }
 
-/* Small Desktops and Laptops (992px to 1199px) */
-/* @media only screen and (min-width: 992px) {
- #card-container {
-  padding: 0 10rem 0 10rem;
- }
- .card {
-  width: 50%;
- }
-}
-
-/* Large Desktops and Laptops (1200px and above) */
-@media only screen and (min-width: 1200px) {
- /* CSS rules for large desktops and laptops */
-}
 .card-content {
  position: relative;
  display: flex;
@@ -169,18 +178,7 @@ body {
 .italic {
  font: italic;
 }
-.card img {
- width: 12rem;
- height: 12rem;
- height: auto;
- border-radius: 0.3rem;
- box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1),
-  0px 10px 15px -3px rgba(0, 0, 0, 0.1), 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
-}
-.card img:hover {
- cursor: pointer;
- scale: 105%;
-}
+
 .footer {
  display: flex;
  justify-content: center;

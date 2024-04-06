@@ -61,15 +61,17 @@ function editCardContent(card, rank, newTitle, newImageURL, album) {
   modalContent.innerHTML = `
     <div class="album-info">
       <div class="modal-content-1">
-        <h1>${rank}. ${album.album_title}</h1>
-          <h3>Artist: ${album.artist}</h3>
+        <h1 class="rank">${rank}. ${album.album_title}</h1>
+        <h3 class="artist">Artist: ${album.artist}</h3>
         <img src="./images/${album.cover_url}"/>
       </div>
       <div class="modal-content-2">
         <h3><span class="italic">Genres</span>: ${album.genres.map(
          (x) => ` ${x}`
         )}</h3>
+        <h3 class="date">Released: ${album.date}</h3>
         <h3 class="critic-rating">${album.critic_score}</h3>
+   
       </div>
     </div>
   `;
