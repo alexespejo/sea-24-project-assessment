@@ -28,29 +28,53 @@ import { albums_of_all_time } from "./data.js";
 // you should use more than just an array of strings to store it all.
 
 // This function adds cards the page to display the data in the array
+const modalBox = document.getElementById("dialog");
+const modalContent = document.getElementById("modal-content");
 
 function showCards() {
  const cardContainer = document.getElementById("card-container");
-
- for (let i = 0; i < albums_of_all_time.length; i += 1) {
-  const card = document.createElement("div");
-  card.innerHTML = `
-      <div>
-        <div>
-            ${albums_of_all_time[i].title}
-        </div>
-        <img src="./images/${albums_of_all_time[i].cover_url}"/>
-      </div>
-    `;
-  cardContainer.append(card);
+ const templateCard = document.querySelector(".card");
+ for (let i = 0; i < albums_of_all_time.length; i++) {
+  const nextCard = templateCard.cloneNode(true); // Copy the template card
+  editCardContent(
+   nextCard,
+   i + 1,
+   albums_of_all_time[i].album_title,
+   `./images/${albums_of_all_time[i].cover_url}`,
+   albums_of_all_time[i]
+  );
+  cardContainer.append(nextCard);
  }
 }
 
-function editCardContent(card, newTitle, newImageURL) {
+function editCardContent(card, rank, newTitle, newImageURL, album) {
  card.style.display = "block";
+ const rankNumber = card.querySelector(".rank-number");
+ const cardHeader = card.querySelector(".title");
+ const artistTitle = card.querySelector(".artist");
+ const btn = card.querySelector(".btn");
 
- const cardHeader = card.querySelector("h2");
+ rankNumber.textContent = rank;
  cardHeader.textContent = newTitle;
+ artistTitle.textContent = album.artist;
+ btn.addEventListener("click", () => {
+  modalContent.innerHTML = `
+    <div class="album-info">
+      <div class="modal-content-1">
+        <h1>${rank}. ${album.album_title}</h1>
+          <h3>Artist: ${album.artist}</h3>
+        <img src="./images/${album.cover_url}"/>
+      </div>
+      <div class="modal-content-2">
+        <h3><span class="italic">Genres</span>: ${album.genres.map(
+         (x) => ` ${x}`
+        )}</h3>
+        <h3 class="critic-rating">${album.critic_score}</h3>
+      </div>
+    </div>
+  `;
+  modalBox.showModal();
+ });
 
  const cardImage = card.querySelector("img");
  cardImage.src = newImageURL;

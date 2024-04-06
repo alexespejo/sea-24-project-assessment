@@ -1,54 +1,189 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&family=Nunito&family=Poppins:wght@500&display=swap");
 html,
 body {
+ --primary: #a991f7;
+ --secondary: #f6d860;
+ --accent: #37cdbe;
+ --neutral: #3d4451;
+ --base-100: #ffffff;
+ transition: all;
+ font-family: "Poppins", sans-serif;
+ font-weight: 400;
+ font-style: normal;
  margin: 0;
  padding: 0;
+ background: rgb(229, 229, 229);
+ color: rgb(69, 69, 69);
 }
-
+#home-page {
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+}
+#filter-controls {
+ display: flex;
+ width: 60%;
+ height: 3rem;
+ border-radius: 0.3rem;
+ box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1),
+  0px 10px 15px -3px rgba(0, 0, 0, 0.1), 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+#filter-controls input {
+ width: 60%;
+ background: none;
+ border: 1px;
+}
+#dialog {
+ overflow: auto;
+ overflow-x: hidden;
+ width: 50%;
+ height: 50%;
+ border-radius: 0.3rem;
+ border: none;
+ box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1),
+  0px 10px 15px -3px rgba(0, 0, 0, 0.1), 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+#modal-content .album-info {
+ display: flex;
+ width: 40rem;
+}
+#dialog h1 {
+ font-size: 18px;
+}
+#dialog h3 {
+ font-size: 16px;
+}
+#dialog img {
+ width: 12rem;
+ height: 12rem;
+ border-radius: 0.3rem;
+ box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1),
+  0px 10px 15px -3px rgba(0, 0, 0, 0.1), 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+#dialog .modal-close-button {
+ position: absolute;
+ top: 0;
+ right: 0;
+ cursor: pointer;
+ margin-left: auto;
+ padding: 1rem;
+ background: white;
+ border: none;
+}
+.flexbox {
+ display: flex;
+}
+.album-info .modal-content-1 .modal-content-2 {
+ display: flex;
+}
+.album-info .modal-content-1 {
+ display: flex;
+ flex-direction: column;
+ justify-content: center;
+ align-items: center;
+ width: 50%;
+}
+.album-info .modal-content-2 {
+ padding-left: 1rem;
+ width: 50%;
+}
 #card-container {
  display: flex;
  justify-content: center;
+ align-items: center;
+ gap: 0.5rem;
  flex-wrap: wrap;
- margin: 20px;
+ padding: 0.5rem;
 }
 
 .card {
- width: 50%;
- background: red;
+ position: relative;
+ width: 15rem;
+ height: 22rem;
+ display: flex;
+ font-size: 0.6rem;
+ flex-direction: column;
+ justify-content: space-between;
+ align-items: center;
+ padding: 0.5rem;
+ border-radius: 0.3rem;
 }
 
+.card .heading {
+ text-align: center;
+ flex-direction: column;
+ align-items: center;
+ justify-content: space-between;
+}
+.rank-number {
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ padding: 0.3rem;
+ width: 1rem;
+ height: 1rem;
+ background-color: white;
+ border-radius: 100%;
+}
+.artist {
+ font-size: 12px;
+ display: inline;
+ font: bold;
+}
+.card-controls {
+ position: absolute;
+ bottom: 1px;
+ right: 1px;
+}
+.card-head {
+ display: flex;
+ justify-content: center;
+}
+
+/* Small Desktops and Laptops (992px to 1199px) */
+/* @media only screen and (min-width: 992px) {
+ #card-container {
+  padding: 0 10rem 0 10rem;
+ }
+ .card {
+  width: 50%;
+ }
+}
+
+/* Large Desktops and Laptops (1200px and above) */
+@media only screen and (min-width: 1200px) {
+ /* CSS rules for large desktops and laptops */
+}
 .card-content {
- padding: 20px;
- font-family: "Verdana";
- color: #777;
+ position: relative;
+ display: flex;
+ justify-content: center;
+ align-items: center;
 }
-
-.card-content h2 {
- margin-top: 0;
- font-size: 20px;
+.relative {
+ position: relative;
 }
-
+.bold {
+ font: bold;
+}
+.italic {
+ font: italic;
+}
 .card img {
- width: 100%;
+ width: 12rem;
+ height: 12rem;
  height: auto;
+ border-radius: 0.3rem;
+ box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1),
+  0px 10px 15px -3px rgba(0, 0, 0, 0.1), 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
 }
-
+.card img:hover {
+ cursor: pointer;
+ scale: 105%;
+}
 .footer {
  display: flex;
  justify-content: center;
  background-color: rgba(0, 0, 0, 0.3);
  padding: 10px;
-}
-
-button {
- text-align: center;
- background-color: #666;
- border: none;
- padding-left: 10px;
- padding-right: 10px;
- height: 40px;
- border-radius: 10px;
- color: white;
- font-size: 22px;
- cursor: pointer;
- margin: 5px;
 }
