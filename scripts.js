@@ -31,14 +31,32 @@ function changeSearch(searchingByAlbum) {
 
 searchByAlbumBtn.addEventListener("click", () => changeSearch(false));
 searchByArtistBtn.addEventListener("click", () => changeSearch(true));
-
+function isSubsequence(subsequence, sequence) {
+ let subsequenceIndex = 0;
+ for (let i = 0; i < sequence.length; i++) {
+  if (sequence[i] === subsequence[subsequenceIndex]) {
+   subsequenceIndex++;
+   if (subsequenceIndex === subsequence.length) {
+    return true;
+   }
+  }
+ }
+ return false;
+}
 function searchByArtist() {
  let albums = albums_of_all_time;
  const searchTerm = artistSearchInput.value.trim().toLowerCase();
 
  if (searchArtist) {
   showCards(
-   albums.filter((album) => album.artist.toLowerCase().includes(searchTerm))
+   albums.filter((album) => {
+    const artistLowerCase = album.artist.toLowerCase();
+    const searchTermLowerCase = searchTerm.toLowerCase();
+    return (
+     artistLowerCase.includes(searchTermLowerCase) ||
+     isSubsequence(searchTermLowerCase, artistLowerCase)
+    );
+   })
   );
  } else {
   showCards(

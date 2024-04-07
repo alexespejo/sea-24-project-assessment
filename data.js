@@ -183,7 +183,7 @@ export let albums_of_all_time = [
  {
   artist: "Santana",
   album_title: "Abraxas",
-  cover_url: null,
+  cover_url: "SantanaAbraxas.jpg",
   date: "September 23, 1970",
   genres: ["Psychedelic Rock", "Latin Rock"],
   critic_score: "100",
@@ -345,7 +345,7 @@ export let albums_of_all_time = [
  {
   artist: "Pixies",
   album_title: "Surfer Rosa",
-  cover_url: null,
+  cover_url: "SurferRosa.jpg",
   date: "March 21, 1988",
   genres: ["Indie Rock", "Alternative Rock"],
   critic_score: "98",
@@ -741,7 +741,7 @@ export let albums_of_all_time = [
  {
   artist: "Alice in Chains",
   album_title: "Dirt",
-  cover_url: null,
+  cover_url: "Dirt_(Alice_in_Chains_album_-_cover_art).jpg",
   date: "September 29, 1992",
   genres: ["Grunge", "Alternative Metal"],
   critic_score: "94",
