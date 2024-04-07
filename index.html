@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
  <head>
-  <title>Top 100 Albums of All Time</title>
+  <title>A Collection of the Greatest Albums Rated by Critics</title>
   <meta name="description" content="A Catalog of Shows Set in Los Angeles" />
   <link rel="stylesheet" href="style.css" />
   <script type="module" src="scripts.js"></script>
@@ -9,9 +9,35 @@
 
  <body>
   <header class="main-header">
-   <h1 class="title">Top 100 Albums of All Time</h1>
+   <h1 class="top-title">
+    Critics Collection of the top 100 Greatest Albums of All Time
+   </h1>
   </header>
   <main class="" id="home-page">
+   <dialog id="savdAlbumDialog" style="height: 75%">
+    <form method="dialog">
+     <button
+      type="submit"
+      class="modal-close-button"
+      style="position: absolute; top: 0; right: 0"
+     >
+      <svg
+       xmlns="http://www.w3.org/2000/svg"
+       width="16"
+       height="16"
+       fill="currentColor"
+       class="bi bi-x-lg"
+       viewBox="0 0 16 16"
+      >
+       <path
+        d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"
+       />
+      </svg>
+     </button>
+    </form>
+    <h1 class="">Saved Albums</h1>
+    <ol class="savedAlbumsQueue"></ol>
+   </dialog>
    <nav class="" id="filter-controls">
     <div class="join">
      <input
@@ -34,7 +60,7 @@
      <option value="funk">Funk</option>
      <option value="soul">Soul</option>
     </select>
-    <button class="">
+    <button class="" onclick="savdAlbumDialog.showModal()">
      Saved Albums
      <svg
       xmlns="http://www.w3.org/2000/svg"

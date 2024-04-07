@@ -93,7 +93,7 @@ function showCards(album) {
 }
 
 function editCardContent(card, rank, newTitle, newImageURL, album) {
- card.style.display = "block";
+ card.style.display = "flex";
  const cardHeader = card.querySelector(".title");
  const artistTitle = card.querySelector(".artist");
  const btn = card.querySelector(".btn");
