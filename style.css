@@ -267,13 +267,11 @@ dialog {
  flex-direction: column;
  justify-content: center;
  align-items: center;
-
  border-radius: 0.3rem;
 }
 .card img {
  width: 12rem;
  height: 12rem;
- height: auto;
  border-radius: 0.3rem;
  box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1),
   0px 10px 15px -3px rgba(0, 0, 0, 0.1), 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
@@ -331,4 +329,24 @@ dialog {
   flex-direction: column;
   margin: auto;
  }
+}
+
+.underline {
+ background-color: var(--primary);
+ color: var(--base-100);
+}
+
+.btn-save {
+ width: 2rem;
+ height: 2rem;
+ padding: 0.3rem;
+ margin: 0;
+}
+.btn-save:hover {
+ background-color: var(--primary);
+}
+
+button:hover {
+ background-color: var(--accent);
+ color: var(--base-100);
 }
