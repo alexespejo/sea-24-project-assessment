@@ -1,0 +1,38 @@
+.flex {
+ display: flex;
+}
+.flex-col {
+ flex-direction: column;
+}
+.flex-row {
+ flex-direction: row;
+}
+.items-center {
+ align-items: center;
+}
+.justify-center {
+ justify-content: center;
+}
+.relative {
+ position: relative;
+}
+.bold {
+ font: bold;
+}
+.italic {
+ font: italic;
+}
+.underline {
+ background-color: var(--primary);
+ text-decoration: underline;
+}
+
+.btn-save {
+ width: 2rem;
+ height: 2rem;
+ padding: 0.3rem;
+ margin: 0;
+}
+.btn-save:hover {
+ background-color: var(--primary);
+}
