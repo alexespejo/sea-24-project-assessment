@@ -24,7 +24,7 @@
 }
 .underline {
  background-color: var(--primary);
- text-decoration: underline;
+ color: var(--base-100);
 }
 
 .btn-save {
@@ -35,4 +35,9 @@
 }
 .btn-save:hover {
  background-color: var(--primary);
+}
+
+button:hover {
+ background-color: var(--accent);
+ color: var(--base-100);
 }

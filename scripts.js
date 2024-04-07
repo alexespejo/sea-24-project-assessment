@@ -52,6 +52,19 @@ artistSearchInput.addEventListener("input", () => {
  searchByArtist();
 });
 
+const genreFilterSelectMenue = document.getElementById("genreFilter");
+genreFilterSelectMenue.addEventListener("change", () => {
+ let albums = albums_of_all_time;
+ const selectedGenre = genreFilterSelectMenue.value.toLowerCase();
+ const filteredAlbums = albums.filter((album) => {
+  return album.genres.some((genre) =>
+   genre.toLowerCase().includes(selectedGenre)
+  );
+ });
+
+ showCards(filteredAlbums);
+});
+
 function showCards(album) {
  const cardContainer = document.getElementById("card-container");
  //clear html before each render
@@ -108,7 +121,7 @@ function editCardContent(card, rank, newTitle, newImageURL, album) {
         }" alt="${album.album_title} Cover"/>
       </div>
       <div class="modal-content-2">
-        <h3 class="artist"> <span>Artist:</span> ${album.artist}</h3>
+      
         <div class="flex">
           <h3 class="genre-title justify-center">Genres:</h3>
           <ul class="genre-list">
@@ -117,6 +130,7 @@ function editCardContent(card, rank, newTitle, newImageURL, album) {
         </div>
         
         <h3 class="date">Released: <span> ${album.date}</span></h3>
+          <h3 class="artist"> <span>Artist:</span> ${album.artist}</h3>
         <h3 class="critic-rating">
           <span class="label">Critic Score</span> 
           <span class="score"> ${album.critic_score}</span>

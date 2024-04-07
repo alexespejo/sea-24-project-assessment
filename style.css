@@ -37,6 +37,7 @@ body {
  --neutral: #3d4451;
  --base-100: #ffffff;
  transition: all;
+ color: var(--neutral);
  font-family: "Poppins", sans-serif;
  font-weight: 400;
  font-style: normal;
@@ -58,15 +59,15 @@ h4 {
  align-items: center;
 }
 #filter-controls {
- color: rgb(186, 186, 186);
  display: flex;
  width: 60%;
  height: 3rem;
- border-radius: 0.3rem;
+
+ margin: 1.5rem 0 1.5rem 0;
+}
+#filter-controls > * {
  box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1),
   0px 10px 15px -3px rgba(0, 0, 0, 0.1), 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
- margin: 1rem 0 1rem 0;
- padding: 0.3rem;
 }
 #filter-controls input {
  font-family: inherit;
@@ -98,7 +99,6 @@ button > * {
 }
 
 #filter-controls .join button {
- border-left: rgb(86, 86, 86) 1px solid;
  padding: 0.3rem 1rem 0.3rem 1rem;
  font-size: 12px;
  border-radius: 0;
@@ -144,6 +144,9 @@ button > * {
  border: none;
  background-color: inherit;
 }
+.modal-close-button:hover {
+ color: var(--neutral);
+}
 .flexbox {
  display: flex;
 }
@@ -183,7 +186,7 @@ button > * {
  font-size: 2rem;
 }
 .critic-rating .score {
- border: 1px solid black;
+ border: 5px solid black;
  display: flex;
  align-items: center;
  justify-content: center;
@@ -201,15 +204,15 @@ button > * {
 .genre-list {
  height: 100%;
  display: flex;
- flex-wrap: wrap;
+ flex-direction: column;
  margin: 0;
  list-style-type: none;
- align-items: center;
+ padding-left: 1rem;
 }
 .genre-list li {
  font: bold;
  padding: 0;
- margin-right: 0.5rem;
+ margin-right: 0.3rem;
 }
 .date {
  display: flex;
