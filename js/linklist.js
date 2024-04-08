@@ -5,7 +5,7 @@ class Node {
  }
 }
 
-class LinkedList {
+export class LinkedList {
  constructor() {
   this.head = null;
   this.size = 0;
@@ -34,28 +34,46 @@ class LinkedList {
   this.size++;
  }
 
- removeAt(index) {
-  if (index < 0 || index >= this.size) {
-   return console.log("Invalid index");
-  }
-
-  let current = this.head;
-  let previous = null;
-  let currentIndex = 0;
-
-  if (index === 0) {
-   this.head = current.next;
+ removeByTitle(title) {
+  if (this.size === 1 && this.head.data.album_title === title) {
+   alert("poped first");
+   this.head = null;
+   this.size = 0;
   } else {
-   while (currentIndex < index) {
+   let current = this.head;
+   let previous = null;
+
+   while (current.data.album_title !== title) {
     previous = current;
     current = current.next;
-    currentIndex++;
    }
 
    previous.next = current.next;
+   this.size--;
+   return current.data;
+  }
+ }
+
+ includes(data) {
+  let current = this.head;
+  while (current) {
+   if (current.data.album_title === data) {
+    return true;
+   }
+   current = current.next;
+  }
+  return false;
+ }
+
+ at(index) {
+  if (index > this.size) {
+   return 0;
   }
 
-  this.size--;
+  let current = this.head;
+  for (let i = 0; i < index; i += 1) {
+   current = current.next;
+  }
   return current.data;
  }
 }

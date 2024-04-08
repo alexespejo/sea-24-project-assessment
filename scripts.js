@@ -1,13 +1,10 @@
 import { albums_of_all_time } from "./js/data.js";
+import { LinkedList } from "./js/linklist.js";
 
-// Your final submission should have much more data than this, and
-// you should use more than just an array of strings to store it all.
-
-// This function adds cards the page to display the data in the array
 const modalBox = document.getElementById("dialog");
 const modalContent = document.getElementById("modal-content");
 
-let savedAlbums = [];
+let savedAlbums = new LinkedList();
 
 let searchArtist = true;
 const artistSearchInput = document.getElementById("filterSearch");
@@ -115,7 +112,9 @@ function editCardContent(card, rank, newTitle, newImageURL, album) {
  const artistTitle = card.querySelector(".artist");
  const btn = card.querySelector(".btn");
  const saveBtn = card.querySelector(".btn-save");
-
+ if (savedAlbums.includes(album.album_title)) {
+  saveBtn.classList.add("btn-save-highlight");
+ }
  cardHeader.textContent = rank + ". " + album.album_title;
  artistTitle.textContent =
   album.artist +
@@ -124,22 +123,23 @@ function editCardContent(card, rank, newTitle, newImageURL, album) {
  saveBtn.addEventListener("click", () => {
   const savedAlbumQueue = document.getElementById("savedAlbumsQueue");
   const savedAlbumItem = document.querySelector(".savedAlbumListItem");
-  if (savedAlbums.map((item) => item.album_title).includes(album.album_title)) {
-   alert("album is already added");
+  if (savedAlbums.includes(album.album_title)) {
    saveBtn.classList.remove("btn-save-highlight");
+   savedAlbums.removeByTitle(album.album_title);
   } else {
    saveBtn.classList.add("btn-save-highlight");
    savedAlbums.push(album);
-   savedAlbumQueue.innerHTML = "";
-   for (let i = 0; i < savedAlbums.length; i += 1) {
-    savedAlbumItem.style.display = "flex";
-    const albumTemplate = savedAlbumItem.cloneNode(true);
-    albumTemplate.querySelector(
-     "img"
-    ).src = `./images/${savedAlbums[i].cover_url}`;
-    albumTemplate.querySelector("h3").textContent = savedAlbums[i].album_title;
-    savedAlbumQueue.append(albumTemplate);
-   }
+  }
+  savedAlbumQueue.innerHTML = "";
+  for (let i = 0; i < savedAlbums.size; i += 1) {
+   savedAlbumItem.style.display = "flex";
+   const albumTemplate = savedAlbumItem.cloneNode(true);
+   albumTemplate.querySelector("img").src = `./images/${
+    savedAlbums.at(i).cover_url
+   }`;
+   albumTemplate.querySelector("h3").textContent =
+    savedAlbums.at(i).album_title;
+   savedAlbumQueue.append(albumTemplate);
   }
  });
 
@@ -186,15 +186,3 @@ function editCardContent(card, rank, newTitle, newImageURL, album) {
 document.addEventListener("DOMContentLoaded", () => {
  showCards(albums_of_all_time);
 });
-
-function quoteAlert() {
- console.log("Button Clicked!");
- alert(
-  "I guess I can kiss heaven goodbye, because it got to be a sin to look this good!"
- );
-}
-
-function removeLastCard() {
- titles.pop(); // Remove last item in titles array
- showCards(); // Call showCards again to refresh
-}
