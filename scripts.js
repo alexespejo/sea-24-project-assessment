@@ -1,5 +1,4 @@
 import { albums_of_all_time } from "./js/data.js";
-import { LinkedList } from "./js/linklist.js";
 
 const modalBox = document.getElementById("dialog");
 const modalContent = document.getElementById("modal-content");
@@ -17,10 +16,10 @@ function changeSearch(searchingByAlbum) {
  searchByArtistBtn.classList.remove("underline");
  searchByAlbumBtn.classList.remove("underline");
  if (searchArtist) {
-  artistSearchInput.placeholder = "Did your Favorite Artist Make the Cut? 👀";
+  artistSearchInput.placeholder = "Do you see your favorite Artist?";
   searchByArtistBtn.classList.add("underline");
  } else {
-  artistSearchInput.placeholder = "Did your Favorite Album Make the Cut? 👀";
+  artistSearchInput.placeholder = "Do you see your favorite Album?";
   searchByAlbumBtn.classList.add("underline");
  }
 }
@@ -112,7 +111,7 @@ function editCardContent(card, rank, newTitle, newImageURL, album) {
  const artistTitle = card.querySelector(".artist");
  const btn = card.querySelector(".btn");
  const saveBtn = card.querySelector(".btn-save");
- if (savedAlbums.includes(album.album_title)) {
+ if (savedAlbums.map((item) => item.album_title).includes(album.album_title)) {
   saveBtn.classList.add("btn-save-highlight");
  }
  cardHeader.textContent = rank + ". " + album.album_title;
@@ -125,6 +124,14 @@ function editCardContent(card, rank, newTitle, newImageURL, album) {
   const savedAlbumItem = document.querySelector(".savedAlbumListItem");
   if (savedAlbums.map((item) => item.album_title).includes(album.album_title)) {
    saveBtn.classList.remove("btn-save-highlight");
+   let indexToRemove = 0;
+   for (let i = 0; i < savedAlbums.length; i += 1) {
+    if (savedAlbums[i].album_title === album.album_title) {
+     indexToRemove = i;
+     break;
+    }
+   }
+   savedAlbums.splice(indexToRemove, 1);
    //  savedAlbums.removeByTitle(album.album_title);
   } else {
    saveBtn.classList.add("btn-save-highlight");

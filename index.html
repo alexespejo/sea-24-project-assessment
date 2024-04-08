@@ -1,8 +1,12 @@
 <!DOCTYPE html>
 <html>
  <head>
-  <title>A Collection of the Greatest Albums Rated by Critics</title>
-  <meta name="description" content="A Catalog of Shows Set in Los Angeles" />
+  <title>Greatest Albums of All Time</title>
+  <meta
+   name="description"
+   content=" A Critics Collection of the Greatest Albums of All Time"
+  />
+  <link rel="icon" type="image/x-icon" href="./images/icon.png" />
   <link rel="stylesheet" href="style.css" />
   <script type="module" src="scripts.js"></script>
  </head>
@@ -10,7 +14,7 @@
  <body>
   <header class="main-header">
    <h1 class="top-title">
-    Critics Collection of the top 100 Greatest Albums of All Time
+    A Critics Collection of the Greatest Albums of All Time
    </h1>
   </header>
   <main class="" id="home-page">
@@ -36,29 +40,22 @@
      </button>
     </form>
     <h1 class="">Saved Albums</h1>
-    <ol id="savedAlbumsQueue">
-     <li
-      class="savedAlbumListItem"
-      style="
-       display: none;
-       flex-direction: column;
-       align-items: center;
-       width: fit-content;
-       height: fit-content;
-       position: relative;
-      "
-     >
-      <img src="" alt="" />
-      <h3></h3>
-     </li>
-    </ol>
+    <ol id="savedAlbumsQueue"></ol>
+    <li
+     id="templateItemAlbumList"
+     class="savedAlbumListItem"
+     style="display: none"
+    >
+     <img />
+     <h3></h3>
+    </li>
    </dialog>
    <nav class="" id="filter-controls">
     <div class="join">
      <input
       type="text"
       id="filterSearch"
-      placeholder="Did your Favorite Album Make the Cut? 👀"
+      placeholder="Do you see your favorite Artist? 👀"
      />
      <button id="searchByArtist" class="underline">Search Artist</button>
      <button id="searchByAlbum" style="border-radius: 0 0.3rem 0.3rem 0">
