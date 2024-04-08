@@ -4,7 +4,7 @@ import { LinkedList } from "./js/linklist.js";
 const modalBox = document.getElementById("dialog");
 const modalContent = document.getElementById("modal-content");
 
-let savedAlbums = new LinkedList();
+let savedAlbums = [];
 
 let searchArtist = true;
 const artistSearchInput = document.getElementById("filterSearch");
@@ -123,22 +123,21 @@ function editCardContent(card, rank, newTitle, newImageURL, album) {
  saveBtn.addEventListener("click", () => {
   const savedAlbumQueue = document.getElementById("savedAlbumsQueue");
   const savedAlbumItem = document.querySelector(".savedAlbumListItem");
-  if (savedAlbums.includes(album.album_title)) {
+  if (savedAlbums.map((item) => item.album_title).includes(album.album_title)) {
    saveBtn.classList.remove("btn-save-highlight");
-   savedAlbums.removeByTitle(album.album_title);
+   //  savedAlbums.removeByTitle(album.album_title);
   } else {
    saveBtn.classList.add("btn-save-highlight");
    savedAlbums.push(album);
   }
   savedAlbumQueue.innerHTML = "";
-  for (let i = 0; i < savedAlbums.size; i += 1) {
+  for (let i = 0; i < savedAlbums.length; i += 1) {
    savedAlbumItem.style.display = "flex";
    const albumTemplate = savedAlbumItem.cloneNode(true);
-   albumTemplate.querySelector("img").src = `./images/${
-    savedAlbums.at(i).cover_url
-   }`;
-   albumTemplate.querySelector("h3").textContent =
-    savedAlbums.at(i).album_title;
+   albumTemplate.querySelector(
+    "img"
+   ).src = `./images/${savedAlbums[i].cover_url}`;
+   albumTemplate.querySelector("h3").textContent = savedAlbums[i].album_title;
    savedAlbumQueue.append(albumTemplate);
   }
  });
