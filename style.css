@@ -1,35 +1,5 @@
 @import url("/styles/utility.css");
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
-input,
-button,
-select {
- appearance: none;
- -webkit-appearance: none;
- -moz-appearance: none;
- border: none;
- outline: none;
- background: none;
- margin: 0;
- cursor: pointer;
- font-weight: 500;
- /* Add any additional styles as needed */
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
-ul,
-ol,
-li,
-i {
- margin: 0;
- padding: 0;
- font-weight: 500;
-}
 
 html,
 body {
@@ -51,13 +21,39 @@ body {
  background-size: 50px 50px;
  background-position: -19px -19px;
 }
+input,
+button,
+select {
+ appearance: none;
+ -webkit-appearance: none;
+ -moz-appearance: none;
+ border: none;
+ outline: none;
+ background: none;
+ margin: 0;
+ cursor: pointer;
+ font-weight: 500;
+ color: var(--netural);
+
+ /* Add any additional styles as needed */
+}
+
 h1,
 h2,
 h3,
-h4 {
- padding: 0;
+h4,
+h5,
+h6,
+p,
+ul,
+ol,
+li,
+i {
  margin: 0;
+ padding: 0;
+ font-weight: 500;
 }
+
 .main-header {
  display: flex;
  flex-direction: column;
@@ -179,6 +175,7 @@ dialog {
  padding: 1rem;
  border: none;
  background-color: inherit;
+ color: black;
 }
 .modal-close-button:hover {
  color: var(--neutral);
@@ -380,8 +377,19 @@ dialog {
  padding: 0.3rem;
  margin: 0;
  border: 1px solid var(--netural);
- box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1),
-  0px 10px 15px -3px rgba(0, 0, 0, 0.1), 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
+ box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+.label-score {
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ font-weight: 500;
+ font-size: 15px;
+ height: 2.5rem;
+ padding: 0 1rem;
+ background: white;
+ border-radius: 0.3rem;
+ box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 
 .btn-save-highlight {

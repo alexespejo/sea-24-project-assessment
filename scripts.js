@@ -4,6 +4,16 @@ const modalBox = document.getElementById("dialog");
 const modalContent = document.getElementById("modal-content");
 
 let savedAlbums = [];
+let savedFilter = false;
+const filterSaveBtn = document.getElementById("filterBySaved");
+filterSaveBtn.addEventListener("click", () => {
+ if (!savedFilter) {
+  showCards(savedAlbums);
+ } else {
+  showCards(albums_of_all_time);
+ }
+ savedFilter = !savedFilter;
+});
 
 let searchArtist = true;
 const artistSearchInput = document.getElementById("filterSearch");
@@ -111,9 +121,12 @@ function editCardContent(card, rank, newTitle, newImageURL, album) {
  const artistTitle = card.querySelector(".artist");
  const btn = card.querySelector(".btn");
  const saveBtn = card.querySelector(".btn-save");
+ const scoreMarker = card.querySelector(".label-score");
+ scoreMarker.textContent = album.critic_score;
  if (savedAlbums.map((item) => item.album_title).includes(album.album_title)) {
   saveBtn.classList.add("btn-save-highlight");
  }
+
  cardHeader.textContent = rank + ". " + album.album_title;
  artistTitle.textContent =
   album.artist +
@@ -137,15 +150,19 @@ function editCardContent(card, rank, newTitle, newImageURL, album) {
    saveBtn.classList.add("btn-save-highlight");
    savedAlbums.push(album);
   }
-  savedAlbumQueue.innerHTML = "";
-  for (let i = 0; i < savedAlbums.length; i += 1) {
-   savedAlbumItem.style.display = "flex";
-   const albumTemplate = savedAlbumItem.cloneNode(true);
-   albumTemplate.querySelector(
-    "img"
-   ).src = `./images/${savedAlbums[i].cover_url}`;
-   albumTemplate.querySelector("h3").textContent = savedAlbums[i].album_title;
-   savedAlbumQueue.append(albumTemplate);
+  if (savedFilter) {
+   showCards(savedAlbums);
+  } else {
+   savedAlbumQueue.innerHTML = "";
+   for (let i = 0; i < savedAlbums.length; i += 1) {
+    savedAlbumItem.style.display = "flex";
+    const albumTemplate = savedAlbumItem.cloneNode(true);
+    albumTemplate.querySelector(
+     "img"
+    ).src = `./images/${savedAlbums[i].cover_url}`;
+    albumTemplate.querySelector("h3").textContent = savedAlbums[i].album_title;
+    savedAlbumQueue.append(albumTemplate);
+   }
   }
  });
 

@@ -38,38 +38,6 @@
    </details>
   </header>
   <main class="" id="home-page">
-   <dialog id="savdAlbumDialog" style="height: 75%">
-    <form method="dialog">
-     <button
-      type="submit"
-      class="modal-close-button"
-      style="position: absolute; top: 0; right: 0"
-     >
-      <svg
-       xmlns="http://www.w3.org/2000/svg"
-       width="16"
-       height="16"
-       fill="currentColor"
-       class="bi bi-x-lg"
-       viewBox="0 0 16 16"
-      >
-       <path
-        d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"
-       />
-      </svg>
-     </button>
-    </form>
-    <h1 class="">Saved Albums</h1>
-    <ol id="savedAlbumsQueue"></ol>
-    <li
-     id="templateItemAlbumList"
-     class="savedAlbumListItem"
-     style="display: none"
-    >
-     <img />
-     <h3></h3>
-    </li>
-   </dialog>
    <nav class="" id="filter-controls">
     <div class="join">
      <input
@@ -93,7 +61,7 @@
      <option value="funk">Funk</option>
      <option value="soul">Soul</option>
     </select>
-    <button class="" onclick="savdAlbumDialog.showModal()">
+    <button class="" id="filterBySaved">
      Saved Albums
      <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -133,9 +101,13 @@
    <div class="card" style="display: none">
     <div class="card-content relative" style="width: 100%; height: 50%">
      <div class="relative">
+      <h3
+       class="label-score"
+       style="position: absolute; bottom: -15px; left: -20px; z-index: 100"
+      ></h3>
       <button
        class="btn-save"
-       style="position: absolute; bottom: -10px; left: -10px; z-index: 100"
+       style="position: absolute; bottom: 30px; left: -20px; z-index: 100"
       >
        <svg
         xmlns="http://www.w3.org/2000/svg"
