@@ -118,7 +118,9 @@ function editCardContent(card, rank, newTitle, newImageURL, album) {
  const saveBtn = card.querySelector(".btn-save");
 
  cardHeader.textContent = rank + ". " + album.album_title;
- artistTitle.textContent = album.artist;
+ artistTitle.textContent =
+  album.artist +
+  `${album.artist[album.artist.length - 1] === "s" ? "'" : "'s"}`;
  saveBtn.addEventListener("click", () => {
   if (savedAlbums.map((item) => item.album_title).includes(album.album_title)) {
    alert("album is already added");
@@ -140,18 +142,18 @@ function editCardContent(card, rank, newTitle, newImageURL, album) {
       </div>
       <div class="modal-content-2">
       
-        <div class="flex">
+        <div class="flex items-center">
           <h3 class="genre-title justify-center">Genres:</h3>
           <ul class="genre-list">
-            ${album.genres.map((x) => `<li>${x}</li>`).join("")}
+            ${album.genres.map((x) => `<li>${x},</li>`).join("")}
           </ul>
         </div>
         
-        <h3 class="date">Released: <span> ${album.date}</span></h3>
-          <h3 class="artist"> <span>Artist:</span> ${album.artist}</h3>
-        <h3 class="critic-rating">
+        <h3 class="date"> <span>Released:</span> ${album.date}</h3>
+          <h3 class="artist"><span>Artist:</span> ${album.artist}</h3>
+          <h3 class="critic-rating">
           <span class="label">Critic Score</span> 
-          <span class="score"> ${album.critic_score}</span>
+          <span class="score">${album.critic_score}</span>
         </h3>
       </div>
     </div>
