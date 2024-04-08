@@ -126,7 +126,7 @@ button {
 dialog {
  overflow: auto;
  overflow-x: hidden;
- width: 50%;
+ width: 45%;
  height: 75%;
  border-radius: 0.3rem;
  border: none;
@@ -138,6 +138,7 @@ dialog {
  flex-direction: column;
  align-items: center;
  justify-content: center;
+ text-align: center;
  width: 100%;
 }
 #dialog .rank {
@@ -357,10 +358,14 @@ dialog {
 }
 
 .btn-save {
- width: 2rem;
- height: 2rem;
+ width: 2.5rem;
+ height: 2.5rem;
  padding: 0.3rem;
  margin: 0;
+}
+.btn-save-highlight {
+ background-color: var(--accent);
+ color: var(--base-100);
 }
 .btn-save:hover {
  background-color: var(--primary);
@@ -369,4 +374,40 @@ dialog {
 button:hover {
  background-color: var(--accent);
  color: var(--base-100);
+}
+
+#savedAlbumsQueue {
+ display: flex;
+ flex-wrap: wrap;
+ padding: 0.5rem;
+}
+#savedAlbumsQueue > * {
+ margin: 0.3rem;
+}
+
+.savedAlbumListItem img {
+ box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1),
+  0px 10px 15px -3px rgba(0, 0, 0, 0.1), 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
+ border-radius: 0.3rem;
+ width: 11rem;
+ height: 11rem;
+}
+
+.savedAlbumListItem h3 {
+ font-size: 15px;
+ display: flex;
+ position: absolute;
+ top: 0;
+ left: 0;
+ height: 100%;
+ width: 100%;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ text-align: center;
+ opacity: 0;
+}
+.savedAlbumListItem h3:hover {
+ opacity: 1;
+ background-color: rgba(255, 255, 255, 0.8);
 }

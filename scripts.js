@@ -1,4 +1,4 @@
-import { albums_of_all_time } from "./data.js";
+import { albums_of_all_time } from "./js/data.js";
 
 // Your final submission should have much more data than this, and
 // you should use more than just an array of strings to store it all.
@@ -9,9 +9,8 @@ const modalContent = document.getElementById("modal-content");
 
 let savedAlbums = [];
 
-const artistSearchInput = document.getElementById("filterSearch");
-
 let searchArtist = true;
+const artistSearchInput = document.getElementById("filterSearch");
 const searchByArtistBtn = document.getElementById("searchByArtist");
 const searchByAlbumBtn = document.getElementById("searchByAlbum");
 
@@ -90,7 +89,7 @@ function showCards(album) {
 
  const templateCard = document.querySelector(".card");
  if (album.length === 0) {
-  if (artistSearchInput.value.trim().toLowerCase() === "kanye") {
+  if (artistSearchInput.value.trim().toLowerCase() === "drake") {
    cardContainer.append("lol");
   } else {
    cardContainer.append("hmm... Something doesn't seem right 🤔");
@@ -121,11 +120,26 @@ function editCardContent(card, rank, newTitle, newImageURL, album) {
  artistTitle.textContent =
   album.artist +
   `${album.artist[album.artist.length - 1] === "s" ? "'" : "'s"}`;
+
  saveBtn.addEventListener("click", () => {
+  const savedAlbumQueue = document.getElementById("savedAlbumsQueue");
+  const savedAlbumItem = document.querySelector(".savedAlbumListItem");
   if (savedAlbums.map((item) => item.album_title).includes(album.album_title)) {
    alert("album is already added");
+   saveBtn.classList.remove("btn-save-highlight");
   } else {
+   saveBtn.classList.add("btn-save-highlight");
    savedAlbums.push(album);
+   savedAlbumQueue.innerHTML = "";
+   for (let i = 0; i < savedAlbums.length; i += 1) {
+    savedAlbumItem.style.display = "flex";
+    const albumTemplate = savedAlbumItem.cloneNode(true);
+    albumTemplate.querySelector(
+     "img"
+    ).src = `./images/${savedAlbums[i].cover_url}`;
+    albumTemplate.querySelector("h3").textContent = savedAlbums[i].album_title;
+    savedAlbumQueue.append(albumTemplate);
+   }
   }
  });
 
