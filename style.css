@@ -24,7 +24,8 @@ h6,
 p,
 ul,
 ol,
-li {
+li,
+i {
  margin: 0;
  padding: 0;
  font-weight: 500;
@@ -65,20 +66,21 @@ h4 {
 }
 .main-header details {
  width: 50%;
+ font-weight: 100;
 }
 .main-header details > p {
- font-size: 15px;
+ font-weight: 100;
+ font-size: 13px;
+ padding: 0.3rem;
 }
 .main-header summary {
- font-weight: 100;
+ cursor: pointer;
  text-align: center;
 }
 .top-title {
  /* background: rgb(255, 255, 255); */
- padding: 0.5rem 1rem;
  margin-top: 1rem;
  width: fit-content;
- border-radius: 0.3rem;
  font-size: 1.5rem;
 }
 
@@ -92,6 +94,7 @@ h4 {
  width: 60%;
  height: 3rem;
  margin: 1.5rem 0 1.5rem 0;
+ border-radius: 0.3rem;
 }
 #filter-controls > * {
  box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1),
@@ -101,11 +104,11 @@ h4 {
  font-family: inherit;
  font: bold;
  padding: 0.5rem;
- background-color: white;
  width: 20rem;
  border-radius: 0.3rem 0 0 0.3rem;
  border: var(--neutral) 0.5px solid;
  margin: 1px;
+ background-color: white;
 }
 
 #filter-controls select,
