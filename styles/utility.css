@@ -16,7 +16,7 @@
 .relative {
  position: relative;
 }
-.bold {
+/* .bold {
  font: bold;
 }
 .italic {
@@ -25,4 +25,4 @@
 .underline {
  background-color: var(--primary);
  color: var(--base-100);
-}
+} */
