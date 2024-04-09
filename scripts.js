@@ -135,8 +135,8 @@ function editCardContent(card, rank, newTitle, newImageURL, album) {
   `${album.artist[album.artist.length - 1] === "s" ? "'" : "'s"}`;
 
  saveBtn.addEventListener("click", () => {
-  const savedAlbumQueue = document.getElementById("savedAlbumsQueue");
-  const savedAlbumItem = document.querySelector(".savedAlbumListItem");
+  // const savedAlbumQueue = document.getElementById("savedAlbumsQueue");
+  // const savedAlbumItem = document.querySelector(".savedAlbumListItem");
   if (savedAlbums.map((item) => item.album_title).includes(album.album_title)) {
    saveBtn.classList.remove("btn-save-highlight");
    let indexToRemove = 0;
@@ -154,18 +154,19 @@ function editCardContent(card, rank, newTitle, newImageURL, album) {
   }
   if (savedFilter) {
    showCards(savedAlbums);
-  } else {
-   savedAlbumQueue.innerHTML = "";
-   for (let i = 0; i < savedAlbums.length; i += 1) {
-    savedAlbumItem.style.display = "flex";
-    const albumTemplate = savedAlbumItem.cloneNode(true);
-    albumTemplate.querySelector(
-     "img"
-    ).src = `./images/${savedAlbums[i].cover_url}`;
-    albumTemplate.querySelector("h3").textContent = savedAlbums[i].album_title;
-    savedAlbumQueue.append(albumTemplate);
-   }
   }
+  //  else {
+  //  savedAlbumQueue.innerHTML = "";
+  //  for (let i = 0; i < savedAlbums.length; i += 1) {
+  //   savedAlbumItem.style.display = "flex";
+  //   const albumTemplate = savedAlbumItem.cloneNode(true);
+  //   albumTemplate.querySelector(
+  //    "img"
+  //   ).src = `./images/${savedAlbums[i].cover_url}`;
+  //   albumTemplate.querySelector("h3").textContent = savedAlbums[i].album_title;
+  //   savedAlbumQueue.append(albumTemplate);
+  //  }
+  // }
  });
 
  //render modal on button click
