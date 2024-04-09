@@ -1,7 +1,8 @@
 import { albums_of_all_time } from "./data/data.js";
 
-//store data into a singleton
-let displayAlbums = albums_of_all_time;
+let displayAlbums = albums_of_all_time; //singleton to store the displaying albums
+let savedAlbums = []; //separate list to store saved items
+let savedFilter = false; // Flag to determine whether we're displaying the saved albums
 
 const modalBox = document.getElementById("dialog");
 const modalContent = document.getElementById("modal-content");
@@ -12,33 +13,42 @@ const searchByArtistBtn = document.getElementById("searchByArtist");
 const searchByAlbumBtn = document.getElementById("searchByAlbum");
 
 const genreFilterSelectMenue = document.getElementById("genreFilter");
-genreFilterSelectMenue.addEventListener("change", () => {
+function filterGenre() {
  const selectedGenre = genreFilterSelectMenue.value.toLowerCase();
+ if (savedFilter) {
+  // If displaying only saved
+  displayAlbums = savedAlbums;
+ } else {
+  // When filtering the whole collection
+  displayAlbums = albums_of_all_time;
+ }
+
  displayAlbums = displayAlbums.filter((album) => {
   return album.genres.some((genre) =>
    genre.toLowerCase().includes(selectedGenre)
   );
  });
  showCards(displayAlbums);
-});
+}
+
+genreFilterSelectMenue.addEventListener("change", filterGenre);
 //Search Bar
 function changeSearch(searchingByAlbum) {
  searchArtist = searchingByAlbum;
  searchByArtistBtn.classList.remove("underline");
  searchByAlbumBtn.classList.remove("underline");
+ // Change background color of filter button to indicate the saved collection
  if (searchArtist) {
-  artistSearchInput.placeholder = "Do you see your favorite Artist?";
+  artistSearchInput.placeholder = "Do you see your favorite Artist? 👀";
   searchByArtistBtn.classList.add("underline");
  } else {
-  artistSearchInput.placeholder = "Do you see your favorite Album?";
+  artistSearchInput.placeholder = "Do you see your favorite Album? 👀";
   searchByAlbumBtn.classList.add("underline");
  }
  searchArtist = false;
 }
 
 //Saved Queue Items
-let savedAlbums = [];
-let savedFilter = false;
 const filterSaveBtn = document.getElementById("filterBySaved");
 //Display only the values in cards
 filterSaveBtn.addEventListener("click", () => {
@@ -47,19 +57,19 @@ filterSaveBtn.addEventListener("click", () => {
   // Display Saved List
   displayAlbums = savedAlbums;
   filterSaveBtn.classList.add("btn-save-highlight");
-  showCards(displayAlbums);
  } else {
   // Display All Albums
   displayAlbums = albums_of_all_time;
   filterSaveBtn.classList.remove("btn-save-highlight");
-  showCards(displayAlbums);
  }
  savedFilter = !savedFilter;
+ filterGenre(); //filter data;
+ showCards(displayAlbums);
 });
 
 searchByAlbumBtn.addEventListener("click", () => changeSearch(false));
 searchByArtistBtn.addEventListener("click", () => changeSearch(true));
-
+//Determine if characters exist out of order
 function isSubsequence(subsequence, sequence) {
  let subsequenceIndex = 0;
  for (let i = 0; i < sequence.length; i++) {
@@ -72,31 +82,34 @@ function isSubsequence(subsequence, sequence) {
  }
  return false;
 }
-function searchByArtist() {
- let albums = displayAlbums;
- const searchTerm = artistSearchInput.value.trim().toLowerCase();
 
+// Function to search via text input
+function searchByArtist() {
+ const searchTerm = artistSearchInput.value.trim().toLowerCase();
+ //Check if the textbox is empty and display all the albums with the appropriate filter
+ if (searchTerm === "") {
+  displayAlbums = albums_of_all_time;
+  filterGenre();
+ }
+ // Check if searching by artist
  if (searchArtist) {
-  showCards(
-   albums.filter((album) => {
-    const artistLowerCase = album.artist.toLowerCase();
-    const searchTermLowerCase = searchTerm.toLowerCase();
-    return (
-     artistLowerCase.includes(searchTermLowerCase) ||
-     isSubsequence(searchTermLowerCase, artistLowerCase)
-    );
-   })
-  );
+  displayAlbums = displayAlbums.filter((album) => {
+   const artistLowerCase = album.artist.toLowerCase();
+   const searchTermLowerCase = searchTerm.toLowerCase();
+   return (
+    artistLowerCase.includes(searchTermLowerCase) ||
+    isSubsequence(searchTermLowerCase, artistLowerCase)
+   );
+  });
  } else {
-  displayAlbums = albums.filter((album) =>
+  // searching by album title
+  displayAlbums = displayAlbums.filter((album) =>
    album.album_title.toLowerCase().includes(searchTerm)
   );
-  showCards(displayAlbums);
  }
+ showCards(displayAlbums);
 }
-artistSearchInput.addEventListener("input", () => {
- searchByArtist();
-});
+artistSearchInput.addEventListener("input", searchByArtist);
 
 function showCards(album) {
  const cardContainer = document.getElementById("card-container");
@@ -178,7 +191,12 @@ function editCardContent(card, rank, newTitle, newImageURL, album) {
         <div class="flex items-center">
           <h3 class="genre-title justify-center">Genres:</h3>
           <ul class="genre-list">
-            ${album.genres.map((x) => `<li>${x},</li>`).join("")}
+            ${album.genres
+             .map(
+              (x, index) =>
+               `<li>${x}${index + 1 === album.genres.length ? "" : ","}</li>`
+             )
+             .join("")}
           </ul>
         </div>
         
