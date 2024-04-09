@@ -30,8 +30,8 @@ function filterGenre() {
  });
  showCards(displayAlbums);
 }
-
 genreFilterSelectMenue.addEventListener("change", filterGenre);
+
 //Search Bar
 function changeSearch(searchingByAlbum) {
  searchArtist = searchingByAlbum;
