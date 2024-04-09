@@ -150,7 +150,7 @@ function editCardContent(card, rank, newTitle, newImageURL, album) {
   saveBtn.classList.add("btn-save-highlight");
  }
 
- cardHeader.textContent = rank + ". " + album.album_title;
+ cardHeader.textContent = album.album_title;
  artistTitle.textContent =
   album.artist +
   `${album.artist[album.artist.length - 1] === "s" ? "'" : "'s"}`;
@@ -180,7 +180,7 @@ function editCardContent(card, rank, newTitle, newImageURL, album) {
   modalContent.innerHTML = `
     <div class="album-info">
       <div class="modal-content-1">
-        <h1 class="rank">${rank}. ${album.album_title}</h1>
+        <h1 class="rank">${album.album_title}</h1>
        
         <img src="./images/${
          album.cover_url ? album.cover_url : `emptyImage.svg`

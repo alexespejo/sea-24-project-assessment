@@ -1132,25 +1132,3 @@ export let albums_of_all_time = [
   num_reviews: "12",
  },
 ];
-
-// const updatedAlbums = test.map((album) => {
-//  // Split the title into artist and album title
-//  const [artist, albumTitle] = album.title.split(" - ", 2);
-//
-//  // Create a new object with separated artist and album title
-//  return {
-//   artist: artist,
-//   album_title: albumTitle,
-//   cover_url: album.cover_url,
-//   date: album.date,
-//   genres: album.genres,
-//   critic_score: album.critic_score,
-//   num_reviews: album.num_reviews,
-//  };
-// });
-//
-// // Convert the array to a string in JavaScript format
-// const jsString = JSON.stringify(updatedAlbums, null, 2);
-//
-// // Print the result
-// console.log(jsString);
