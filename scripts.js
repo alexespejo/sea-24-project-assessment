@@ -1,19 +1,7 @@
-import { albums_of_all_time } from "./js/data.js";
+import { albums_of_all_time } from "./data/data.js";
 
 const modalBox = document.getElementById("dialog");
 const modalContent = document.getElementById("modal-content");
-
-let savedAlbums = [];
-let savedFilter = false;
-const filterSaveBtn = document.getElementById("filterBySaved");
-filterSaveBtn.addEventListener("click", () => {
- if (!savedFilter) {
-  showCards(savedAlbums);
- } else {
-  showCards(albums_of_all_time);
- }
- savedFilter = !savedFilter;
-});
 
 let searchArtist = true;
 const artistSearchInput = document.getElementById("filterSearch");
@@ -32,7 +20,21 @@ function changeSearch(searchingByAlbum) {
   artistSearchInput.placeholder = "Do you see your favorite Album?";
   searchByAlbumBtn.classList.add("underline");
  }
+ searchArtist = false;
 }
+
+let savedAlbums = [];
+let savedFilter = false;
+const filterSaveBtn = document.getElementById("filterBySaved");
+filterSaveBtn.addEventListener("click", () => {
+ artistSearchInput.value = "";
+ if (!savedFilter) {
+  showCards(savedAlbums);
+ } else {
+  showCards(albums_of_all_time);
+ }
+ savedFilter = !savedFilter;
+});
 
 searchByAlbumBtn.addEventListener("click", () => changeSearch(false));
 searchByArtistBtn.addEventListener("click", () => changeSearch(true));
@@ -84,7 +86,7 @@ genreFilterSelectMenue.addEventListener("change", () => {
    genre.toLowerCase().includes(selectedGenre)
   );
  });
-
+ savedFilter = false;
  showCards(filteredAlbums);
 });
 

@@ -134,6 +134,7 @@ button {
 #filter-controls > * {
  margin-right: 0.3rem;
 }
+
 dialog {
  overflow: auto;
  overflow-x: hidden;
