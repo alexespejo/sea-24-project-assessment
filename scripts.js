@@ -1,5 +1,8 @@
 import { albums_of_all_time } from "./data/data.js";
 
+//store data into a singleton
+let displayAlbums = albums_of_all_time;
+
 const modalBox = document.getElementById("dialog");
 const modalContent = document.getElementById("modal-content");
 
@@ -8,9 +11,19 @@ const artistSearchInput = document.getElementById("filterSearch");
 const searchByArtistBtn = document.getElementById("searchByArtist");
 const searchByAlbumBtn = document.getElementById("searchByAlbum");
 
+const genreFilterSelectMenue = document.getElementById("genreFilter");
+genreFilterSelectMenue.addEventListener("change", () => {
+ const selectedGenre = genreFilterSelectMenue.value.toLowerCase();
+ displayAlbums = displayAlbums.filter((album) => {
+  return album.genres.some((genre) =>
+   genre.toLowerCase().includes(selectedGenre)
+  );
+ });
+ showCards(displayAlbums);
+});
+//Search Bar
 function changeSearch(searchingByAlbum) {
  searchArtist = searchingByAlbum;
-
  searchByArtistBtn.classList.remove("underline");
  searchByAlbumBtn.classList.remove("underline");
  if (searchArtist) {
@@ -23,21 +36,30 @@ function changeSearch(searchingByAlbum) {
  searchArtist = false;
 }
 
+//Saved Queue Items
 let savedAlbums = [];
 let savedFilter = false;
 const filterSaveBtn = document.getElementById("filterBySaved");
+//Display only the values in cards
 filterSaveBtn.addEventListener("click", () => {
  artistSearchInput.value = "";
  if (!savedFilter) {
-  showCards(savedAlbums);
+  // Display Saved List
+  displayAlbums = savedAlbums;
+  filterSaveBtn.classList.add("btn-save-highlight");
+  showCards(displayAlbums);
  } else {
-  showCards(albums_of_all_time);
+  // Display All Albums
+  displayAlbums = albums_of_all_time;
+  filterSaveBtn.classList.remove("btn-save-highlight");
+  showCards(displayAlbums);
  }
  savedFilter = !savedFilter;
 });
 
 searchByAlbumBtn.addEventListener("click", () => changeSearch(false));
 searchByArtistBtn.addEventListener("click", () => changeSearch(true));
+
 function isSubsequence(subsequence, sequence) {
  let subsequenceIndex = 0;
  for (let i = 0; i < sequence.length; i++) {
@@ -51,7 +73,7 @@ function isSubsequence(subsequence, sequence) {
  return false;
 }
 function searchByArtist() {
- let albums = albums_of_all_time;
+ let albums = displayAlbums;
  const searchTerm = artistSearchInput.value.trim().toLowerCase();
 
  if (searchArtist) {
@@ -66,28 +88,14 @@ function searchByArtist() {
    })
   );
  } else {
-  showCards(
-   albums.filter((album) =>
-    album.album_title.toLowerCase().includes(searchTerm)
-   )
+  displayAlbums = albums.filter((album) =>
+   album.album_title.toLowerCase().includes(searchTerm)
   );
+  showCards(displayAlbums);
  }
 }
 artistSearchInput.addEventListener("input", () => {
  searchByArtist();
-});
-
-const genreFilterSelectMenue = document.getElementById("genreFilter");
-genreFilterSelectMenue.addEventListener("change", () => {
- let albums = albums_of_all_time;
- const selectedGenre = genreFilterSelectMenue.value.toLowerCase();
- const filteredAlbums = albums.filter((album) => {
-  return album.genres.some((genre) =>
-   genre.toLowerCase().includes(selectedGenre)
-  );
- });
- savedFilter = false;
- showCards(filteredAlbums);
 });
 
 function showCards(album) {
@@ -135,8 +143,6 @@ function editCardContent(card, rank, newTitle, newImageURL, album) {
   `${album.artist[album.artist.length - 1] === "s" ? "'" : "'s"}`;
 
  saveBtn.addEventListener("click", () => {
-  // const savedAlbumQueue = document.getElementById("savedAlbumsQueue");
-  // const savedAlbumItem = document.querySelector(".savedAlbumListItem");
   if (savedAlbums.map((item) => item.album_title).includes(album.album_title)) {
    saveBtn.classList.remove("btn-save-highlight");
    let indexToRemove = 0;
@@ -147,7 +153,6 @@ function editCardContent(card, rank, newTitle, newImageURL, album) {
     }
    }
    savedAlbums.splice(indexToRemove, 1);
-   //  savedAlbums.removeByTitle(album.album_title);
   } else {
    saveBtn.classList.add("btn-save-highlight");
    savedAlbums.push(album);
@@ -155,18 +160,6 @@ function editCardContent(card, rank, newTitle, newImageURL, album) {
   if (savedFilter) {
    showCards(savedAlbums);
   }
-  //  else {
-  //  savedAlbumQueue.innerHTML = "";
-  //  for (let i = 0; i < savedAlbums.length; i += 1) {
-  //   savedAlbumItem.style.display = "flex";
-  //   const albumTemplate = savedAlbumItem.cloneNode(true);
-  //   albumTemplate.querySelector(
-  //    "img"
-  //   ).src = `./images/${savedAlbums[i].cover_url}`;
-  //   albumTemplate.querySelector("h3").textContent = savedAlbums[i].album_title;
-  //   savedAlbumQueue.append(albumTemplate);
-  //  }
-  // }
  });
 
  //render modal on button click
@@ -210,5 +203,5 @@ function editCardContent(card, rank, newTitle, newImageURL, album) {
 
 // This calls the addCards() function when the page is first loaded
 document.addEventListener("DOMContentLoaded", () => {
- showCards(albums_of_all_time);
+ showCards(displayAlbums);
 });
